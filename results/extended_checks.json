@@ -1,0 +1,37 @@
+{
+  "command": "python code/verify_extended_evaluation.py",
+  "failures": [],
+  "label": "recorded scientific evaluation",
+  "notes": [
+    "design hash matches frozen",
+    "distribution source product_state_estimator.py verified 81681b97ef48...",
+    "distribution source product_state_geometry.py verified 338cc5712307...",
+    "distribution source homogeneous_fidelity.py verified b1b4acae094e...",
+    "distribution source finite_size_evaluation.py verified f6125bf3bd2e...",
+    "recorded-evaluation label present",
+    "scope seed=20260921 reps=10000 N=4096 ok",
+    "zero-event upper 0.00029953 ok",
+    "64 rows present",
+    "no duplicates",
+    "all 64 combos covered, no selection",
+    "all 64 rows ok",
+    "row IDs exact",
+    "all-row metric recomputation from raw means passed (rmse/quantiles/exceed/cover/wilson/zero-event)",
+    "seed/mean digests verified for all 64 rows; full 128-bit seeds unique within every row, no modulus",
+    "native/shadow target-only global ranges independently verified (all 8 combos)",
+    "native n1 hom_111 law mean independently verified 0.7 (target 1.000000000 orth -0.000000000)",
+    "deterministic replay verified hom_111 n1 native reps 0..4",
+    "deterministic replay verified hom_near n6 geometry reps 0..4",
+    "deterministic replay verified hom_111 n2 shadow reps 0..4",
+    "heterogeneous joint-Born spot-check passed: E[H]=1.000000000 E[H^2]=1.445889 (native inversion algebra support only, NOT a test of the complex-score arc theorem; not proof)"
+  ],
+  "numpy_version": "2.5.3",
+  "passed": true,
+  "python_version": "3.13.13",
+  "resources": {
+    "total_time_sec": 26.20077019999735,
+    "tracemalloc_current_bytes": 66281634,
+    "tracemalloc_peak_bytes": 73395494
+  },
+  "scipy_version": "1.17.1"
+}

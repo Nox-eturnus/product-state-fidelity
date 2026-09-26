@@ -1,0 +1,968 @@
+{
+  "status": "PASS",
+  "scope": "Tiny exact-rational LP diagnostic for k=1,2 only; finite enumeration, not a scalable solver; does not validate asymptotic exponent.",
+  "seed": "deterministic (no RNG)",
+  "python": "3.13.13",
+  "ks": [
+    1,
+    2
+  ],
+  "N_values": [
+    1,
+    4,
+    16,
+    256
+  ],
+  "delta": 0.3333333333333333,
+  "eps": "1/20",
+  "round_den": 256,
+  "per_k": {
+    "1": {
+      "k": 1,
+      "W": [
+        [
+          "3/4",
+          "1/4"
+        ],
+        [
+          "1/4",
+          "3/4"
+        ]
+      ],
+      "W_float": [
+        [
+          0.75,
+          0.25
+        ],
+        [
+          0.25,
+          0.75
+        ]
+      ],
+      "W_match_enum": true,
+      "W_cols_sum1": true,
+      "inverse": {
+        "g": [
+          "3/2",
+          "-1/2"
+        ],
+        "g_float": [
+          1.5,
+          -0.5
+        ],
+        "b": "0",
+        "G": "3/2",
+        "unbiased": true
+      },
+      "comparators": {
+        "zero": {
+          "g": [
+            "0",
+            "0"
+          ],
+          "b": "1",
+          "G": "0"
+        },
+        "half": {
+          "g": [
+            "1/2",
+            "1/2"
+          ],
+          "b": "1/2",
+          "G": "1/2"
+        }
+      },
+      "enumeration": {
+        "dim": 4,
+        "num_constraints": 10,
+        "total_active_sets": 210,
+        "singular": 38,
+        "infeasible": 154,
+        "feasible_unique": 4,
+        "time_sec": 0.013365800026804209
+      },
+      "optima": {
+        "1": {
+          "N": 1,
+          "sqrtN": 1,
+          "g": [
+            "1/2",
+            "1/2"
+          ],
+          "g_float": [
+            0.5,
+            0.5
+          ],
+          "b": "1/2",
+          "b_float": 0.5,
+          "G": "1/2",
+          "G_float": 0.5,
+          "residuals": [
+            "-1/2",
+            "1/2"
+          ],
+          "hstar": 0,
+          "objective": "1",
+          "objective_float": 1.0,
+          "surrogate": "1",
+          "surrogate_float": 1.0,
+          "hoeffding_radius": 1.4465092364124228,
+          "sufficient_copies": null,
+          "sufficient_reason": "b=0.5 >= eps=0.05; formula needs eps>b",
+          "rounding": {
+            "g_round": [
+              "1/2",
+              "1/2"
+            ],
+            "g_round_float": [
+              0.5,
+              0.5
+            ],
+            "maxdiff": "0",
+            "maxdiff_float": 0.0,
+            "b_round": "1/2",
+            "b_round_float": 0.5,
+            "G_round": "1/2",
+            "G_round_float": 0.5,
+            "cert_ok": true
+          },
+          "mixed": {
+            "q": [
+              "1/3",
+              "2/3"
+            ],
+            "bias": "1/6",
+            "bias_float": 0.16666666666666666,
+            "second": "1/4",
+            "second_float": 0.25
+          },
+          "flag0": {
+            "C": "0",
+            "bias": "0",
+            "second": "0"
+          },
+          "flag_rare": {
+            "C": "1/1000",
+            "bias": "1/6000",
+            "bias_float": 0.00016666666666666666,
+            "second": "1/4000",
+            "second_float": 0.00025
+          },
+          "bit_lengths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "max_bitlen_num": 1,
+          "max_bitlen_den": 2,
+          "feasible": true,
+          "num_ties": 2,
+          "tie_note": "vertices attaining best objective exactly; ties reported honestly",
+          "comparator_objectives": {
+            "zero": "1",
+            "half": "1",
+            "inv": "3/2"
+          }
+        },
+        "4": {
+          "N": 4,
+          "sqrtN": 2,
+          "g": [
+            "3/2",
+            "-1/2"
+          ],
+          "g_float": [
+            1.5,
+            -0.5
+          ],
+          "b": "0",
+          "b_float": 0.0,
+          "G": "3/2",
+          "G_float": 1.5,
+          "residuals": [
+            "0",
+            "0"
+          ],
+          "hstar": 0,
+          "objective": "3/4",
+          "objective_float": 0.75,
+          "surrogate": "3/4",
+          "surrogate_float": 0.75,
+          "hoeffding_radius": 1.419763854618634,
+          "sufficient_copies": 3226,
+          "sufficient_reason": null,
+          "rounding": {
+            "g_round": [
+              "3/2",
+              "-1/2"
+            ],
+            "g_round_float": [
+              1.5,
+              -0.5
+            ],
+            "maxdiff": "0",
+            "maxdiff_float": 0.0,
+            "b_round": "0",
+            "b_round_float": 0.0,
+            "G_round": "3/2",
+            "G_round_float": 1.5,
+            "cert_ok": true
+          },
+          "mixed": {
+            "q": [
+              "1/3",
+              "2/3"
+            ],
+            "bias": "0",
+            "bias_float": 0.0,
+            "second": "13/12",
+            "second_float": 1.0833333333333333
+          },
+          "flag0": {
+            "C": "0",
+            "bias": "0",
+            "second": "0"
+          },
+          "flag_rare": {
+            "C": "1/1000",
+            "bias": "0",
+            "bias_float": 0.0,
+            "second": "13/12000",
+            "second_float": 0.0010833333333333333
+          },
+          "bit_lengths": [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "max_bitlen_num": 2,
+          "max_bitlen_den": 2,
+          "feasible": true,
+          "num_ties": 2,
+          "tie_note": "vertices attaining best objective exactly; ties reported honestly",
+          "comparator_objectives": {
+            "zero": "1",
+            "half": "3/4",
+            "inv": "3/4"
+          }
+        },
+        "16": {
+          "N": 16,
+          "sqrtN": 4,
+          "g": [
+            "3/2",
+            "-1/2"
+          ],
+          "g_float": [
+            1.5,
+            -0.5
+          ],
+          "b": "0",
+          "b_float": 0.0,
+          "G": "3/2",
+          "G_float": 1.5,
+          "residuals": [
+            "0",
+            "0"
+          ],
+          "hstar": 0,
+          "objective": "3/8",
+          "objective_float": 0.375,
+          "surrogate": "3/8",
+          "surrogate_float": 0.375,
+          "hoeffding_radius": 0.709881927309317,
+          "sufficient_copies": 3226,
+          "sufficient_reason": null,
+          "rounding": {
+            "g_round": [
+              "3/2",
+              "-1/2"
+            ],
+            "g_round_float": [
+              1.5,
+              -0.5
+            ],
+            "maxdiff": "0",
+            "maxdiff_float": 0.0,
+            "b_round": "0",
+            "b_round_float": 0.0,
+            "G_round": "3/2",
+            "G_round_float": 1.5,
+            "cert_ok": true
+          },
+          "mixed": {
+            "q": [
+              "1/3",
+              "2/3"
+            ],
+            "bias": "0",
+            "bias_float": 0.0,
+            "second": "13/12",
+            "second_float": 1.0833333333333333
+          },
+          "flag0": {
+            "C": "0",
+            "bias": "0",
+            "second": "0"
+          },
+          "flag_rare": {
+            "C": "1/1000",
+            "bias": "0",
+            "bias_float": 0.0,
+            "second": "13/12000",
+            "second_float": 0.0010833333333333333
+          },
+          "bit_lengths": [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "max_bitlen_num": 2,
+          "max_bitlen_den": 2,
+          "feasible": true,
+          "num_ties": 1,
+          "tie_note": "vertices attaining best objective exactly; ties reported honestly",
+          "comparator_objectives": {
+            "zero": "1",
+            "half": "5/8",
+            "inv": "3/8"
+          }
+        },
+        "256": {
+          "N": 256,
+          "sqrtN": 16,
+          "g": [
+            "3/2",
+            "-1/2"
+          ],
+          "g_float": [
+            1.5,
+            -0.5
+          ],
+          "b": "0",
+          "b_float": 0.0,
+          "G": "3/2",
+          "G_float": 1.5,
+          "residuals": [
+            "0",
+            "0"
+          ],
+          "hstar": 0,
+          "objective": "3/32",
+          "objective_float": 0.09375,
+          "surrogate": "3/32",
+          "surrogate_float": 0.09375,
+          "hoeffding_radius": 0.17747048182732925,
+          "sufficient_copies": 3226,
+          "sufficient_reason": null,
+          "rounding": {
+            "g_round": [
+              "3/2",
+              "-1/2"
+            ],
+            "g_round_float": [
+              1.5,
+              -0.5
+            ],
+            "maxdiff": "0",
+            "maxdiff_float": 0.0,
+            "b_round": "0",
+            "b_round_float": 0.0,
+            "G_round": "3/2",
+            "G_round_float": 1.5,
+            "cert_ok": true
+          },
+          "mixed": {
+            "q": [
+              "1/3",
+              "2/3"
+            ],
+            "bias": "0",
+            "bias_float": 0.0,
+            "second": "13/12",
+            "second_float": 1.0833333333333333
+          },
+          "flag0": {
+            "C": "0",
+            "bias": "0",
+            "second": "0"
+          },
+          "flag_rare": {
+            "C": "1/1000",
+            "bias": "0",
+            "bias_float": 0.0,
+            "second": "13/12000",
+            "second_float": 0.0010833333333333333
+          },
+          "bit_lengths": [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "max_bitlen_num": 2,
+          "max_bitlen_den": 2,
+          "feasible": true,
+          "num_ties": 1,
+          "tie_note": "vertices attaining best objective exactly; ties reported honestly",
+          "comparator_objectives": {
+            "zero": "1",
+            "half": "17/32",
+            "inv": "3/32"
+          }
+        }
+      },
+      "perturbation": {
+        "g_pert": [
+          "501/1000",
+          "501/1000"
+        ],
+        "b_pert": "501/1000",
+        "G_pert": "501/1000",
+        "maxdiff": "1/1000",
+        "maxdiff_float": 0.001,
+        "b_round": "1/2",
+        "cert_ok": true,
+        "nonvacuous": true,
+        "all_optima_dyadic": true
+      }
+    },
+    "2": {
+      "k": 2,
+      "W": [
+        [
+          "9/16",
+          "3/16",
+          "1/16"
+        ],
+        [
+          "3/8",
+          "5/8",
+          "3/8"
+        ],
+        [
+          "1/16",
+          "3/16",
+          "9/16"
+        ]
+      ],
+      "W_float": [
+        [
+          0.5625,
+          0.1875,
+          0.0625
+        ],
+        [
+          0.375,
+          0.625,
+          0.375
+        ],
+        [
+          0.0625,
+          0.1875,
+          0.5625
+        ]
+      ],
+      "W_match_enum": true,
+      "W_cols_sum1": true,
+      "inverse": {
+        "g": [
+          "9/4",
+          "-3/4",
+          "1/4"
+        ],
+        "g_float": [
+          2.25,
+          -0.75,
+          0.25
+        ],
+        "b": "0",
+        "G": "9/4",
+        "unbiased": true
+      },
+      "comparators": {
+        "zero": {
+          "g": [
+            "0",
+            "0",
+            "0"
+          ],
+          "b": "1",
+          "G": "0"
+        },
+        "half": {
+          "g": [
+            "1/2",
+            "1/2",
+            "1/2"
+          ],
+          "b": "1/2",
+          "G": "1/2"
+        }
+      },
+      "enumeration": {
+        "dim": 5,
+        "num_constraints": 14,
+        "total_active_sets": 2002,
+        "singular": 458,
+        "infeasible": 1486,
+        "feasible_unique": 12,
+        "time_sec": 0.19045619998360053
+      },
+      "optima": {
+        "1": {
+          "N": 1,
+          "sqrtN": 1,
+          "g": [
+            "1/2",
+            "1/2",
+            "1/2"
+          ],
+          "g_float": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "b": "1/2",
+          "b_float": 0.5,
+          "G": "1/2",
+          "G_float": 0.5,
+          "residuals": [
+            "-1/2",
+            "1/2",
+            "1/2"
+          ],
+          "hstar": 0,
+          "objective": "1",
+          "objective_float": 1.0,
+          "surrogate": "1",
+          "surrogate_float": 1.0,
+          "hoeffding_radius": 1.4465092364124228,
+          "sufficient_copies": null,
+          "sufficient_reason": "b=0.5 >= eps=0.05; formula needs eps>b",
+          "rounding": {
+            "g_round": [
+              "1/2",
+              "1/2",
+              "1/2"
+            ],
+            "g_round_float": [
+              0.5,
+              0.5,
+              0.5
+            ],
+            "maxdiff": "0",
+            "maxdiff_float": 0.0,
+            "b_round": "1/2",
+            "b_round_float": 0.5,
+            "G_round": "1/2",
+            "G_round_float": 0.5,
+            "cert_ok": true
+          },
+          "mixed": {
+            "q": [
+              "1/6",
+              "1/3",
+              "1/2"
+            ],
+            "bias": "1/3",
+            "bias_float": 0.3333333333333333,
+            "second": "1/4",
+            "second_float": 0.25
+          },
+          "flag0": {
+            "C": "0",
+            "bias": "0",
+            "second": "0"
+          },
+          "flag_rare": {
+            "C": "1/1000",
+            "bias": "1/3000",
+            "bias_float": 0.0003333333333333333,
+            "second": "1/4000",
+            "second_float": 0.00025
+          },
+          "bit_lengths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "max_bitlen_num": 1,
+          "max_bitlen_den": 2,
+          "feasible": true,
+          "num_ties": 2,
+          "tie_note": "vertices attaining best objective exactly; ties reported honestly",
+          "comparator_objectives": {
+            "zero": "1",
+            "half": "1",
+            "inv": "9/4"
+          }
+        },
+        "4": {
+          "N": 4,
+          "sqrtN": 2,
+          "g": [
+            "1/2",
+            "1/2",
+            "1/2"
+          ],
+          "g_float": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "b": "1/2",
+          "b_float": 0.5,
+          "G": "1/2",
+          "G_float": 0.5,
+          "residuals": [
+            "-1/2",
+            "1/2",
+            "1/2"
+          ],
+          "hstar": 0,
+          "objective": "3/4",
+          "objective_float": 0.75,
+          "surrogate": "3/4",
+          "surrogate_float": 0.75,
+          "hoeffding_radius": 0.9732546182062114,
+          "sufficient_copies": null,
+          "sufficient_reason": "b=0.5 >= eps=0.05; formula needs eps>b",
+          "rounding": {
+            "g_round": [
+              "1/2",
+              "1/2",
+              "1/2"
+            ],
+            "g_round_float": [
+              0.5,
+              0.5,
+              0.5
+            ],
+            "maxdiff": "0",
+            "maxdiff_float": 0.0,
+            "b_round": "1/2",
+            "b_round_float": 0.5,
+            "G_round": "1/2",
+            "G_round_float": 0.5,
+            "cert_ok": true
+          },
+          "mixed": {
+            "q": [
+              "1/6",
+              "1/3",
+              "1/2"
+            ],
+            "bias": "1/3",
+            "bias_float": 0.3333333333333333,
+            "second": "1/4",
+            "second_float": 0.25
+          },
+          "flag0": {
+            "C": "0",
+            "bias": "0",
+            "second": "0"
+          },
+          "flag_rare": {
+            "C": "1/1000",
+            "bias": "1/3000",
+            "bias_float": 0.0003333333333333333,
+            "second": "1/4000",
+            "second_float": 0.00025
+          },
+          "bit_lengths": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "max_bitlen_num": 1,
+          "max_bitlen_den": 2,
+          "feasible": true,
+          "num_ties": 2,
+          "tie_note": "vertices attaining best objective exactly; ties reported honestly",
+          "comparator_objectives": {
+            "zero": "1",
+            "half": "3/4",
+            "inv": "9/8"
+          }
+        },
+        "16": {
+          "N": 16,
+          "sqrtN": 4,
+          "g": [
+            "9/4",
+            "-3/4",
+            "1/4"
+          ],
+          "g_float": [
+            2.25,
+            -0.75,
+            0.25
+          ],
+          "b": "0",
+          "b_float": 0.0,
+          "G": "9/4",
+          "G_float": 2.25,
+          "residuals": [
+            "0",
+            "0",
+            "0"
+          ],
+          "hstar": 0,
+          "objective": "9/16",
+          "objective_float": 0.5625,
+          "surrogate": "9/16",
+          "surrogate_float": 0.5625,
+          "hoeffding_radius": 1.0648228909639754,
+          "sufficient_copies": 7257,
+          "sufficient_reason": null,
+          "rounding": {
+            "g_round": [
+              "9/4",
+              "-3/4",
+              "1/4"
+            ],
+            "g_round_float": [
+              2.25,
+              -0.75,
+              0.25
+            ],
+            "maxdiff": "0",
+            "maxdiff_float": 0.0,
+            "b_round": "0",
+            "b_round_float": 0.0,
+            "G_round": "9/4",
+            "G_round_float": 2.25,
+            "cert_ok": true
+          },
+          "mixed": {
+            "q": [
+              "1/6",
+              "1/3",
+              "1/2"
+            ],
+            "bias": "0",
+            "bias_float": 0.0,
+            "second": "59/48",
+            "second_float": 1.2291666666666667
+          },
+          "flag0": {
+            "C": "0",
+            "bias": "0",
+            "second": "0"
+          },
+          "flag_rare": {
+            "C": "1/1000",
+            "bias": "0",
+            "bias_float": 0.0,
+            "second": "59/48000",
+            "second_float": 0.0012291666666666666
+          },
+          "bit_lengths": [
+            [
+              4,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "max_bitlen_num": 4,
+          "max_bitlen_den": 3,
+          "feasible": true,
+          "num_ties": 2,
+          "tie_note": "vertices attaining best objective exactly; ties reported honestly",
+          "comparator_objectives": {
+            "zero": "1",
+            "half": "5/8",
+            "inv": "9/16"
+          }
+        },
+        "256": {
+          "N": 256,
+          "sqrtN": 16,
+          "g": [
+            "9/4",
+            "-3/4",
+            "1/4"
+          ],
+          "g_float": [
+            2.25,
+            -0.75,
+            0.25
+          ],
+          "b": "0",
+          "b_float": 0.0,
+          "G": "9/4",
+          "G_float": 2.25,
+          "residuals": [
+            "0",
+            "0",
+            "0"
+          ],
+          "hstar": 0,
+          "objective": "9/64",
+          "objective_float": 0.140625,
+          "surrogate": "9/64",
+          "surrogate_float": 0.140625,
+          "hoeffding_radius": 0.26620572274099386,
+          "sufficient_copies": 7257,
+          "sufficient_reason": null,
+          "rounding": {
+            "g_round": [
+              "9/4",
+              "-3/4",
+              "1/4"
+            ],
+            "g_round_float": [
+              2.25,
+              -0.75,
+              0.25
+            ],
+            "maxdiff": "0",
+            "maxdiff_float": 0.0,
+            "b_round": "0",
+            "b_round_float": 0.0,
+            "G_round": "9/4",
+            "G_round_float": 2.25,
+            "cert_ok": true
+          },
+          "mixed": {
+            "q": [
+              "1/6",
+              "1/3",
+              "1/2"
+            ],
+            "bias": "0",
+            "bias_float": 0.0,
+            "second": "59/48",
+            "second_float": 1.2291666666666667
+          },
+          "flag0": {
+            "C": "0",
+            "bias": "0",
+            "second": "0"
+          },
+          "flag_rare": {
+            "C": "1/1000",
+            "bias": "0",
+            "bias_float": 0.0,
+            "second": "59/48000",
+            "second_float": 0.0012291666666666666
+          },
+          "bit_lengths": [
+            [
+              4,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "max_bitlen_num": 4,
+          "max_bitlen_den": 3,
+          "feasible": true,
+          "num_ties": 1,
+          "tie_note": "vertices attaining best objective exactly; ties reported honestly",
+          "comparator_objectives": {
+            "zero": "1",
+            "half": "17/32",
+            "inv": "9/64"
+          }
+        }
+      },
+      "perturbation": {
+        "g_pert": [
+          "501/1000",
+          "501/1000",
+          "501/1000"
+        ],
+        "b_pert": "501/1000",
+        "G_pert": "501/1000",
+        "maxdiff": "1/1000",
+        "maxdiff_float": 0.001,
+        "b_round": "1/2",
+        "cert_ok": true,
+        "nonvacuous": true,
+        "all_optima_dyadic": true
+      }
+    }
+  },
+  "degraded_povm": {
+    "max_povm_err": 1.1102230246251565e-16,
+    "max_eta_err": 0.0
+  },
+  "clipping": "final estimate clipped to [0,1]",
+  "regression_checks": {
+    "mismatched_lengths_rejected": true,
+    "negative_rejected": true,
+    "noninteger_rejected": true,
+    "bool_rejected": true,
+    "empty_rejected": true,
+    "all_zero_rejected": true,
+    "valid_estimate": 0.75,
+    "valid_clipped": 1,
+    "integer_parsing_ok": true,
+    "fraction_parsing_ok": true,
+    "serialized_parsing_ok": true
+  },
+  "timing_sec": 0.20416079997085035,
+  "notes": [
+    "W[w,h] rows observed, cols latent at eta=1/4; convolution vs bitstring enumeration match; columns sum to 1 exactly.",
+    "Exact inverse g_w=(3/2)^{k-w}(-1/2)^w unbiased for every latent weight.",
+    "Vertices from all (k+3)-subsets via exact Fraction Gaussian elimination; singular/infeasible discarded; same vertices reused for all N.",
+    "Returned b=max_h|sum W g - delta|, G=max|g|; surrogate b+G/sqrt(N) distinct from Hoeffding radius b+G*sqrt(2ln(2/delta)/N) at delta=1/3.",
+    "Sufficient copies ceil(2G^2 ln(2/delta)/(eps-b)^2) only if b<eps; sufficient, not necessary.",
+    "Rounding to 1/256 certified by fresh b_round/G_round with b_round<=b+maxdiff; 1/1000 perturbation ensures non-vacuous check.",
+    "Mixed/flag0/flag-1/1000 checks use unnormalized law I_flag*g with no division by flag probability.",
+    "Degraded signal-1/2 via L/2 coin makes W rational; ideal probabilities assumed, apparatus errors outside certificate.",
+    "No LP solver installed; no hidden division by zero."
+  ]
+}

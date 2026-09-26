@@ -1,0 +1,595 @@
+{
+  "conventions": {
+    "axis_labels": "X/Y/Z per qubit, outcomes +-1 ints",
+    "ideal_probabilities": "exact normalized directions r_hat = r/||r||_2 exactly; float proxies for sampling; finite RNG/control rounding outside certificates; no hardware guarantee",
+    "measurement_model": "per copy product Pauli basis, one measurement per qubit, full n outcome bits retained; across-copy adaptivity allowed in lower bounds; upper nonadaptive; forbidden entangling preprocessing/joint measurements/non-Pauli axes/repeat within copy",
+    "scope": "diagnostic finite-size evaluation only; certificates retain arbitrary iid mixed-input scope; test families do NOT establish worst-case performance",
+    "target_convention": "production exact-normalized-direction convention (product_state_estimator.py): each input triple is finite binary-rational direction with | ||r||_2 - 1 | <= 1e-09; represented pure factor is r/||r||_2 exactly; Pauli classification uses raw exact signed axes only; near-axis rational (20/10001,0,9999/10001) is stored as its exactly normalized float direction (0.002000196018813766,0.0,0.9999979996059425) which is unit within 1e-12 and passes the gate; represented direction is proportional to the named rational"
+  },
+  "delta": 0.3333333333333333,
+  "delta_exact": "1/3",
+  "design_version": "20260909-phase5-v1",
+  "eps": 0.05,
+  "eps_exact": "1/20",
+  "exclusions": {
+    "binary_parity": "Binary parity alone (even/odd of Hamming weight, single bit) is NOT a fidelity estimator and is excluded. All primary methods retain full local Pauli bitstrings: LP/inverse retain full weight w in 0..k plus all-copy stabilizer flag F (not parity); native retains per-qubit sign-corrected bits s_j; shadow retains per-qubit (axis,outcome) pairs; naive retains per-qubit match bits (all-match indicator is a function of full bitstrings, not parity alone). Parity-only scoring would discard weight information needed for the LP/inverse bias certificates and is not evaluated.",
+    "optimized_unbiased": "No general optimized-unbiased comparator (e.g. Caprotti-Morris-Dakic 1.15-1.5 optimized inverses, Cha-Lee minimax) is implemented. Canonical uniform-Pauli shadow is the unbiased comparator; it is NOT claimed optimal. Absence is reported honestly: no implementation and no general optimality claim; canonical range/radius shown alongside LP/inverse/native without pretending optimality."
+  },
+  "failure_rules": {
+    "catch_and_retain": "Any exception during solve/cert/law/sampling is caught; the row is retained with status error/skipped and a finite reason string; no row is dropped and no re-optimization after results",
+    "design_frozen": "Design MUST NOT change after seeing results; resource ceilings that prevent a run retain a skipped/error row with reason",
+    "no_selection": "All planned rows are reported including failures and no-advantage outcomes; no post-hoc selection"
+  },
+  "frozen": true,
+  "homogeneous_prototype": {
+    "beta_exact": "1/40",
+    "den": 4096,
+    "eps_exact": "1/20",
+    "eps_float": 0.05,
+    "method": "existing homogeneous_fidelity.demo_proposal(n) with T=1/4, grid u=[-1/10,0,1/10], float LP tight beta/2, round to den, fresh exact residual/mass/V via residual_of_coeffs/mass_of_coeffs/variance_bound, fresh plan_homogeneous with beta=1/40, count-only plan_copies(eps=1/20); record mass/bias/variance/copy count or honest failure; NO astronomical sampling (no run_homogeneous_streaming for huge N)",
+    "n_list": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "rational_target": [
+      "2/3",
+      "1/3",
+      "2/3"
+    ],
+    "rational_target_note": "exact-rational unit triple (4+1+4)/9=1; Pauli classification exact; dominant axis tie broken smallest X<Y<Z per production; this is the bounded rational prototype target, distinct from float production targets"
+  },
+  "methods": {
+    "geometry": {
+      "applicability": "all primary (n,k); inner LP common on proxy; for k_proxy=0 inner is exact indicator",
+      "axis_distribution": "as inner LP common on PROXY target: weighted |r_hat|/L_hat for proxy-noisy factors, deterministic stabilizer axis for proxy-stabilizers; distribution differs from original-target LP when D nonempty; reported per row via k_original/k_proxy/D",
+      "bias": "b_inner + d_hi (certified worst-case over arbitrary iid mixed inputs)",
+      "channel": "common (theorem default)",
+      "confidence": "R_total = R_inner + d_hi (Fractions exact), interval clip(mean-R_total) outward; certified under ideal probabilities; analytic float evaluation distinguished from fresh rational production certificate by recomputation path (diagnostic law vs production plan_estimator/geometry_certificate)",
+      "description": "deterministic selector beta=eps/2=0.025 via product_state_geometry.select_discards before data; proxy P_D with exact operator bias d=sqrt(1-prod_D (1+a)/2); inner accepted LP common estimator on proxy; full local Pauli bitstrings retained via inner channel",
+      "range": "[-G_inner,G_inner] (k_proxy>0) or [0,1] Bernoulli (k_proxy=0)",
+      "selector_beta": 0.025,
+      "selector_beta_exact": "eps/2 = 1/40"
+    },
+    "inv_common": {
+      "applicability": "all primary k; for k=0 reduces to exact indicator [1] (same as LP k=0)",
+      "axis_distribution": "SAME degraded common channel as lp_common (weighted for K, deterministic for S); different score only",
+      "bias": "~0 at W_mid exactly by construction (W_mid * g_inv = e0 rationally); true-eta bias bounded by 2*G*k*max_eta_error (~1e-25 scale, reported); diagnostic unbiased under ideal probabilities",
+      "channel": "common midpoint eta_mid rational (80-bit enclosure); true irrational eta outside certificate by coupling bound",
+      "confidence": "conservative global bounded-score Hoeffding with [lo,hi]=[-G_inv,G_inv] (k>0) or [0,1] (k=0): radius=(hi-lo)*sqrt(ln(2/delta)/(2N)); analytic floating evaluation, NOT a fresh rational production certificate; distinguished in results",
+      "description": "unbiased inverse on same degraded common channel: g_inv = W_mid^{-1} e0 exactly (Fractions, Gaussian elimination); score H=g_inv[w]*F with all-copy denominator",
+      "range": "G_inv = max|g_inv| (reported per k); larger than LP G"
+    },
+    "inv_half": {
+      "applicability": "all primary k; k=0 same as LP",
+      "axis_distribution": "SAME degraded_half channel as lp_half",
+      "bias": "exactly 0 at eta=1/4 rationally (W*g_inv=e0); diagnostic unbiased",
+      "channel": "degraded_half eta=1/4 exact rational",
+      "confidence": "same Hoeffding form as inv_common with half G_inv; analytic floating",
+      "description": "unbiased inverse on same degraded_half channel: g_inv = W_half^{-1} e0 exactly (Fractions); score H=g_inv[w]*F",
+      "range": "G_inv half (reported)"
+    },
+    "lp_common": {
+      "applicability": "all primary (n,k); k=0 exact indicator path (no solver)",
+      "axis_distribution": "weighted axis sampling p_i=|r_hat_i|/L_hat for each noisy factor K, deterministic stabilizer axis for S; full n bitstrings retained; weight w = count of -1 degraded bits, flag F = all-S-match indicator",
+      "bias": "b_cert from fresh exact residual at W_mid plus 2*G*k*max_eta_error coupling (Fractions); certified for arbitrary iid mixed inputs via R-diagonal reduction",
+      "channel": "common (theorem default, signal 1/sqrt(3), eta=(1-1/sqrt(3))/2 irrational with 80-bit rational enclosure)",
+      "confidence": "production Hoeffding R=b+G*sqrt(2 ln(2/delta)/N) (Fractions exact upper, outward float); k=0 Bernoulli sqrt(ln(2/delta)/(2N)); certified under ideal probabilities",
+      "description": "accepted LP common estimator via product_state_estimator.solve_and_certify(k,N,common) + plan_estimator; score H=g[w]*F with all-copy denominator",
+      "range": "[-G_cert,G_cert] (k>0) or [0,1] (k=0)"
+    },
+    "lp_half": {
+      "applicability": "all primary (n,k); k=0 same exact path",
+      "axis_distribution": "same form as lp_common but with degraded_half coin (signal 1/2); axis distribution identical (weighted), degradation coin differs; distinction reported",
+      "bias": "b_cert exact at eta=1/4 (Fractions)",
+      "channel": "degraded_half (explicit rational, signal 1/2, eta=1/4)",
+      "confidence": "same Hoeffding form as lp_common with half b/G",
+      "description": "accepted LP degraded_half via solve_and_certify(k,N,degraded_half); intentionally noisier, same exponent shape",
+      "range": "[-G_cert,G_cert] or [0,1]"
+    },
+    "naive": {
+      "applicability": "all primary; for all-Pauli target coincides with LP k=0 indicator (equivalence reported, no advantage claimed)",
+      "axis_distribution": "DETERMINISTIC nearest signed Pauli axis per factor (dominant axis, tie smallest X<Y<Z, sign matching r); one measurement per qubit in that basis; full bitstrings retained, score is all-match indicator (function of full bitstrings, not parity alone)",
+      "bias": "exact per-row bias = Tr(Q sigma)-F_true where Q is all-discarded proxy (D=all non-Pauli plus Pauli self); worst-case bias over arbitrary sigma = d=||P-Q|| (geometry certificate full-D); nonzero bias explicitly diagnosed; NO zero-bias fidelity confidence claim",
+      "confidence": "UNAVAILABLE for fidelity (marked null with reason worst-case bias d); Bernoulli interval for Q only is not a fidelity interval; sampling radius sqrt(ln(2/delta)/(2N)) reported as reference for Q-estimation only, not added to fidelity claim",
+      "description": "naive all-matching sign-bit indicator: measure each qubit in nearest Pauli basis, score 1 iff all outcomes match target sign; estimates proxy Q fidelity, not P",
+      "range": "[0,1] Bernoulli"
+    },
+    "native": {
+      "applicability": "all primary; for k=0 reduces to all-match indicator (same as LP k=0, equivalence reported)",
+      "axis_distribution": "weighted p_i=|r_hat_i|/L_hat for each noisy factor (same sampling as LP native upper), deterministic stabilizer axis for S; full bitstrings retained; per-qubit sign-corrected bit s_j=sign(r_i)*o",
+      "bias": "exact per-row bias = E[H]-F_true (0 for product-input families target/orth/mixed by construction; nonzero for correlated mixture corr07 and Bell without product promise; reported per row)",
+      "channel": "native varying-noise (signal 1/L_hat per factor, NO degradation); distinct from deliberately degraded common/half",
+      "confidence": "conservative global bounded-score Hoeffding with [lo,hi]=[min product, max product] (reported per row): radius=(hi-lo)*sqrt(ln(2/delta)/(2N)); valid as fidelity interval ONLY under explicit product-input promise; for non-product families coverage is diagnostic (expected to fail without promise); analytic floating evaluation",
+      "description": "native weighted local inverse product score prod_j (1+L_j*s_j)/2 for noisy factors times exact Pauli-factor indicator for S; product-input-easy estimator (the product-input comparison)",
+      "range": "per-row [lo,hi] from exact enumeration of 2^|K| sign patterns (reported)"
+    },
+    "shadow": {
+      "applicability": "all primary including k=0 (uniform axes even for Pauli factors; distinct from deterministic LP k=0)",
+      "axis_distribution": "UNIFORM independent per-qubit Pauli axis (1/3 X,1/3 Y,1/3 Z) for ALL qubits including stabilizers; full bitstrings retained; different from weighted/deterministic LP/native/naive; reported",
+      "bias": "exactly 0 for arbitrary iid mixed inputs (tensor shadow unbiasedness via linearity; verified); diagnostic unbiased",
+      "confidence": "conservative global bounded-score Hoeffding with [lo,hi]=[min product, max product] (reported): radius=(hi-lo)*sqrt(ln(2/delta)/(2N)); analytic floating evaluation, NOT production certificate; canonical shadow NOT claimed optimal",
+      "description": "canonical uniform-Pauli shadow product_j (1+3*r_{j,axis}*outcome_j)/2; unbiased for any state; range larger than native/LP",
+      "range": "per-row [lo,hi] from exact enumeration of 6^n (axis,outcome) combos (reported)"
+    }
+  },
+  "metrics": {
+    "absolute_error_quantiles": "quantiles of |clipped_estimate - F_true| across reps: p50 (median), p90, max; finite floats",
+    "binomial_uncertainty": "for each empirical fraction p_hat=X/100, 95% Wilson interval (z=1.96) [lo,hi] plus explicit Hoeffding bound half-width sqrt(ln(2/0.05)/(2*100)) ~= 0.136 as reference; diagnostic coverage, NOT a new guarantee",
+    "clipped_rmse": "sqrt(mean((clipped_estimate - F_true)^2)) across reps (clipped estimates in [0,1])",
+    "coverage": "fraction of reps where F_true in [clip(mean-R),clip(mean+R)] (for methods with fidelity interval); naive has null interval (unavailable); diagnostic coverage, not a guarantee; never infer confidence from observed variance",
+    "eps_exceedance": "fraction with |clipped_estimate - F_true| > eps (eps=0.05 frozen)",
+    "expectation": "one-copy E[H] exact (Fractions where rational, else float64 from honest Born law) and numerical float; reported separately from clipped statistics",
+    "no_advantage": "explicit per-row and summary qualifiers where LP/geometry radius/sufficient exceeds or ties comparators, or where certified accuracy not achieved at frozen N; no novelty/practical scaling claim",
+    "radius": "Hoeffding/Bernoulli radius R at frozen (eps,delta,N) for FROZEN score (not minimax, not reoptimized N); surrogate b+G/sqrt(N) shown separately and NOT equated with certified accuracy",
+    "range_cert_bias_sufficient": "per row: score range [lo,hi] or G, certificate bias b (or exact bias for diagnostic methods), radius R, sufficient copies N_suff=ceil(2G^2 ln(2/delta)/(eps-b)^2) (or Bernoulli/Hoeffding-global variant) for FROZEN score; null with reason when b>=eps",
+    "second_moment": "one-copy E[H^2] (unclipped) from honest law; reported separately from clipped RMSE",
+    "unclipped_bias": "E[H]-F_true (unclipped, may be outside [0,1]); reported separately from clipped RMSE"
+  },
+  "n_list": [
+    1,
+    2,
+    4,
+    6
+  ],
+  "precision": {
+    "bits": 80,
+    "den": 256,
+    "float_sampling": "binary64 (float64) for Born probabilities and score values; finite RNG/control rounding outside certificates",
+    "hom_den": 4096,
+    "hom_grid": "u=[-1/10,0,1/10], T=1/4",
+    "rational_certs": "exact Fractions for LP residuals/range/coupling, geometry a/c/d intervals, homogeneous residual/mass/V; outward float conversion via exact Fraction(float) comparison plus nextafter; no NaN/Infinity in JSON (allow_nan=False, finite check)"
+  },
+  "reps": 100,
+  "resource_ceilings": {
+    "dense_law_max_entries": 100000,
+    "highs_time_limit_sec": 120,
+    "homogeneous_max_n": 4,
+    "homogeneous_no_sampling": "count-only; astronomical N retained as huge-int row with failure reason, no sampling attempted",
+    "lp_resource_max_k": 16,
+    "lp_resource_no_simulation": "no sampling/postprocessing for k=8,12,16 rows; solve+cert only",
+    "max_N": 4096,
+    "max_n_primary": 6,
+    "native_memory_exclusion": "Python tracemalloc peak reported; HiGHS native allocations excluded (documented caveat)",
+    "per_row_time_soft_limit_sec": 60
+  },
+  "resource_rows": {
+    "homogeneous_prototype": {
+      "n_list": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "lp_design_only": {
+      "N": 4096,
+      "channels": [
+        "common",
+        "degraded_half"
+      ],
+      "k_list": [
+        8,
+        12,
+        16
+      ]
+    }
+  },
+  "rng_derivation": {
+    "backend_vs_design_separation": "solver/proposal use no RNG (deterministic HiGHS + fixed grids); sampling RNG streams are independent deterministic streams seeded AFTER design/scores frozen; operational smoke uses separate design_rng/backend_rng pair with same derivation at rep 0",
+    "formula": "per (target_id,state,method,N,rep) with rep in 0..99: key = f'{seed}|{target_id}|{state}|{method}|{N}|{rep}'; digest = SHA256(key.encode()).digest(); seed_int = int.from_bytes(digest[:8],'big') % 2**32; numpy Generator = numpy.random.default_rng(seed_int) for multinomial counts; Python random.Random(seed_int) for operational smoke backends; independent across rows/reps by construction; design/proposal never consumes these streams",
+    "master_seed": 20260909
+  },
+  "seed": 20260909,
+  "smoke": {
+    "backend": "correlated full-copy backend: for R-diagonal families use latent all-target/all-opposite draw (p=0.7/0.3) plus per-qubit Born via production born_plus_prob with requested axes (never independent marginal simulation for correlated states); for Bell use explicit joint Born law via 4x4 density matrix and per-basis projectors",
+    "cases": "(a) lp_common n=2 hom_232 corr07 N=16 via est.run_streaming; (b) geometry n=2 mixed_core_tail corr07 N=16 via geo.run_geometry_streaming with selector beta=0.025; both with correlated backend, zero-draw rejection already covered by production tests; smoke asserts estimates in [0,1], intervals ordered in [0,1], N/callback counts exact",
+    "purpose": "prove operational run_streaming/run_geometry_streaming wrappers work against correlated full-copy backends; main 100-rep statistics use frozen multinomial score-law diagnostics (distributionally equivalent to iid full-copy sampling: sum of N iid finite-support scores has same law as sum_v counts[v]*score[v] with counts~Multinomial(N,p)) to avoid expensive per-trial revalidation"
+  },
+  "states": [
+    "target",
+    "orth",
+    "mixed",
+    "corr07"
+  ],
+  "states_note": "target product sigma=tensor tau_+: F=1; orth sigma=tensor tau_-: F=0 (per-factor overlap 0, product 0); mixed maximally mixed I/2^n: F=1/2^n; corr07 0.7 target product + 0.3 all-opposite product (correlated mixture, single full-copy latent draw per copy, NOT independent marginals): F=0.7 (opposite component orthogonal per factor); bell Phi+ ONLY at n=2 for all target cases: sigma=|Phi+><Phi+| with joint Born probabilities (never independent marginal simulation); test families are examples only, certificates retain arbitrary iid mixed-input scope",
+  "status": "FROZEN before experiments; MUST NOT change after seeing results; hashed into results via SHA256 of canonical JSON (sorted keys, separators, ensure_ascii)",
+  "target_cases": {
+    "hom_111": {
+      "note": "homogeneous 111 direction; common vs native noise coincide up to 1/L=1/sqrt(3) vs a=1/sqrt(3) (equal nonzero magnitudes); tests equal-signal case",
+      "vectors": "all n factors (0.5773502691896258,0.5773502691896258,0.5773502691896258)"
+    },
+    "hom_232": {
+      "note": "homogeneous (2/3,1/3,2/3); distinct 1/L=3/5 vs a=2/3; tests differing-signal case",
+      "vectors": "all n factors (0.6666666666666666,0.3333333333333333,0.6666666666666666)"
+    },
+    "hom_near": {
+      "note": "homogeneous near-axis rational direction proportional to (20/10001,0,9999/10001), stored normalized unit (0.002000196018813766,0.0,0.9999979996059425); tests near-axis sufficient-proxy regime",
+      "vectors": "all n factors (0.002000196018813766,0.0,0.9999979996059425)"
+    },
+    "mixed_core_tail": {
+      "note": "heterogeneous core/tail: first m=max(1,n//2) factors (2/3,1/3,2/3), remaining n-m factors near-axis normalized; tests matched core-vs-tail geometry",
+      "vectors": "m 232 + (n-m) near (see per-n lists)"
+    },
+    "pauli_Z": {
+      "note": "positive Z Pauli target; all factors exact (0,0,1); k=0 easy case, constant-copy control",
+      "vectors": "all n factors (0.0,0.0,1.0)"
+    }
+  },
+  "targets_per_n": {
+    "1": {
+      "hom_111": [
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ]
+      ],
+      "hom_232": [
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      ],
+      "hom_near": [
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ]
+      ],
+      "mixed_core_tail": [
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      ],
+      "pauli_Z": [
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "2": {
+      "hom_111": [
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ]
+      ],
+      "hom_232": [
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      ],
+      "hom_near": [
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ]
+      ],
+      "mixed_core_tail": [
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ]
+      ],
+      "pauli_Z": [
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "4": {
+      "hom_111": [
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ]
+      ],
+      "hom_232": [
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      ],
+      "hom_near": [
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ]
+      ],
+      "mixed_core_tail": [
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ]
+      ],
+      "pauli_Z": [
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "6": {
+      "hom_111": [
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ]
+      ],
+      "hom_232": [
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      ],
+      "hom_near": [
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ]
+      ],
+      "mixed_core_tail": [
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ],
+        [
+          0.002000196018813766,
+          0.0,
+          0.9999979996059425
+        ]
+      ],
+      "pauli_Z": [
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  }
+}

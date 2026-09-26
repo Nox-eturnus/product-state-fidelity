@@ -1,0 +1,527 @@
+{
+  "N": 4096,
+  "delta_exact": "1/3",
+  "design_canonical_sha256": "e5c90e200b6bbcadbac2ef3ddea79f9b2d255beb55a772d914323a0d8b07c304",
+  "eps": 0.05,
+  "master_seed": 20260921,
+  "note": "Values derived from extended_results.json. Radii certified/numerical; p90 over 10000 trials. Wilson intervals describe Monte Carlo proportions, not fidelity confidence radii.",
+  "reps": 10000,
+  "selected_rows": [
+    {
+      "N": 4096,
+      "exceed_count": 3,
+      "exceed_wilson": [
+        0.00010203035287762114,
+        0.0008817517174022601
+      ],
+      "method": "lp_common",
+      "n": 1,
+      "p90": 0.02173538208007808,
+      "radius": 0.041110173958428885,
+      "rep_means_digest": "d06a29927438ad86aa61d4eca6f523f3279137c55cb66e8e9ddc84f0c7ef7cf9",
+      "rep_seeds_digest": "beee9a647d2d8479fe82c0be976c54444fab1ac16428beafcdeb110730579bad",
+      "row_id": "hom_near|n1|corr07|lp_common|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 0,
+      "exceed_wilson": [
+        0.0,
+        0.00038401247776654115
+      ],
+      "method": "geometry",
+      "n": 1,
+      "p90": 0.011914062500000044,
+      "radius": 0.015789305328498895,
+      "rep_means_digest": "b9b4154bcf2a5eb3828b65d85e4cf69770065658d07694eb120857f49089f8f6",
+      "rep_seeds_digest": "1e3b32816675eaf54412d07169a0774b4c6f9738fae3bed0c4d9c2c3062a505d",
+      "row_id": "hom_near|n1|corr07|geometry|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 0,
+      "exceed_wilson": [
+        0.0,
+        0.00038401247776654115
+      ],
+      "method": "native",
+      "n": 1,
+      "p90": 0.01163608138890071,
+      "radius": 0.014818758547303336,
+      "rep_means_digest": "0f06a658d0f39493325158610526f30846a56e648c2c66b07202e723775fd40f",
+      "rep_seeds_digest": "b6b65714a313254f6d5820a510dbffcc05cbd802c50c0913ad1b1448a97433e8",
+      "row_id": "hom_near|n1|corr07|native|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 1,
+      "exceed_wilson": [
+        1.765221952685649e-05,
+        0.0005662834557441313
+      ],
+      "method": "shadow",
+      "n": 1,
+      "p90": 0.0215252372614166,
+      "radius": 0.044367531704108,
+      "rep_means_digest": "cb5778387c66330aeebd61f8594cfe859dbdf31b84e1316a4c02cd862732f209",
+      "rep_seeds_digest": "cc179d33eed800484123d51949bee311345b832e6fce46e2adca13697e160361",
+      "row_id": "hom_near|n1|corr07|shadow|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 2,
+      "exceed_wilson": [
+        5.4847779209068104e-05,
+        0.0007290110935663664
+      ],
+      "method": "lp_common",
+      "n": 1,
+      "p90": 0.02145462036132817,
+      "radius": 0.041110173958428885,
+      "rep_means_digest": "42c0b34a7217e5b6070d1add2b1eb364788488a94cda0749b0d7b73d299dabb1",
+      "rep_seeds_digest": "1b07afa2ce51dd52a9979fbfedfe9353cc6961bf474109c03589fc359c3ddbb9",
+      "row_id": "hom_111|n1|corr07|lp_common|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 2,
+      "exceed_wilson": [
+        5.4847779209068104e-05,
+        0.0007290110935663664
+      ],
+      "method": "geometry",
+      "n": 1,
+      "p90": 0.021878051757812544,
+      "radius": 0.041110173958428885,
+      "rep_means_digest": "265f895a1d7c27a4874c60486cbd8c680b02c43a63ab3092183e7ddeb1c1d959",
+      "rep_seeds_digest": "c4a2a5cb49002bc315703b03c2ae07480b6314dd563ac5a02bb48a0e0defed26",
+      "row_id": "hom_111|n1|corr07|geometry|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 2,
+      "exceed_wilson": [
+        5.4847779209068104e-05,
+        0.0007290110935663664
+      ],
+      "method": "native",
+      "n": 1,
+      "p90": 0.021197209727359532,
+      "radius": 0.02561565761405529,
+      "rep_means_digest": "4b763d058fe9639d51a7d4bcc6b343600390038d6961e13138303c1731ad7496",
+      "rep_seeds_digest": "0fc832910984daa1a9c65b570f522e15529e4bf9114b6db6dd2c300378a34250",
+      "row_id": "hom_111|n1|corr07|native|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 1,
+      "exceed_wilson": [
+        1.765221952685649e-05,
+        0.0005662834557441313
+      ],
+      "method": "shadow",
+      "n": 1,
+      "p90": 0.021551406056136146,
+      "radius": 0.02561565761405529,
+      "rep_means_digest": "7ce9fa0488a2ba3882ad22fc4674b7a0158534312528c2b897c7fc4d13ac5580",
+      "rep_seeds_digest": "1e3f5c86ec1cf282c165e85925a3b8468e4d499d7c7e30fd8f8be8067ce5cbbd",
+      "row_id": "hom_111|n1|corr07|shadow|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 25,
+      "exceed_wilson": [
+        0.0016939856428771645,
+        0.003688106772500543
+      ],
+      "method": "lp_common",
+      "n": 2,
+      "p90": 0.027602233886718786,
+      "radius": 0.05589938077737299,
+      "rep_means_digest": "294a8d6a26bb6ee77fefc9ff12887f2bed97396f865c59018587f28a1c4de4bb",
+      "rep_seeds_digest": "a9add7a2c1858910f7812771a9e1b08f32db2406a042000ae6232e4101974f70",
+      "row_id": "hom_near|n2|corr07|lp_common|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 0,
+      "exceed_wilson": [
+        0.0,
+        0.00038401247776654115
+      ],
+      "method": "geometry",
+      "n": 2,
+      "p90": 0.011669921875000044,
+      "radius": 0.016203559341207676,
+      "rep_means_digest": "96619080c7e05252d1f461b14771edbbe3efc22b208894f43e3139c98a85361e",
+      "rep_seeds_digest": "86114c2778d508935547d3db988d1a662682faa04cc66308dfe8fa7c0d30e85b",
+      "row_id": "hom_near|n2|corr07|geometry|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 0,
+      "exceed_wilson": [
+        0.0,
+        0.00038401247776654115
+      ],
+      "method": "native",
+      "n": 2,
+      "p90": 0.011892639159070637,
+      "radius": 0.014833563936550104,
+      "rep_means_digest": "c3ba561dd87df680196035123082ad19620e7d1f0f04ae8a0886d780154ec03a",
+      "rep_seeds_digest": "28705c1840c1fe8f5f596bd12c5e64d9b712f5ae377a561becec374309dd031d",
+      "row_id": "hom_near|n2|corr07|native|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 22,
+      "exceed_wilson": [
+        0.0014533386585013621,
+        0.003328984164363006
+      ],
+      "method": "shadow",
+      "n": 2,
+      "p90": 0.027537401826632068,
+      "radius": 0.08873493027939586,
+      "rep_means_digest": "b2a3103c15e12e2aef7cf7465b5d361d1f404ff5998205e471b3a57943246e93",
+      "rep_seeds_digest": "6a8c6a4da55d5bb8298c8aad527e694f1706467546d14ca0ffc9364237e7d081",
+      "row_id": "hom_near|n2|corr07|shadow|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 31,
+      "exceed_wilson": [
+        0.0021848506150486356,
+        0.004396780985355752
+      ],
+      "method": "lp_common",
+      "n": 2,
+      "p90": 0.02759078979492191,
+      "radius": 0.05589938077737299,
+      "rep_means_digest": "0d90e8945c6beb6e0d82c3b22b4c54ae596917b59c51b9f138b56c3c16f9ac11",
+      "rep_seeds_digest": "aed5b01c6a03c3c216c443096f681e3806a883ef7fc912652894eeca28459c71",
+      "row_id": "hom_111|n2|corr07|lp_common|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 29,
+      "exceed_wilson": [
+        0.002019983350543452,
+        0.004161801854852043
+      ],
+      "method": "geometry",
+      "n": 2,
+      "p90": 0.027882614135742223,
+      "radius": 0.05589938077737299,
+      "rep_means_digest": "40c590fc2e9ee9a1629c5e851b0589b41c9c0b2f6b5b9a7a50c5e9602ae33601",
+      "rep_seeds_digest": "2e090ed84e3786f78f89c4cba5dc89f06805ae539639daf6032f6f63a1aef531",
+      "row_id": "hom_111|n2|corr07|geometry|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 29,
+      "exceed_wilson": [
+        0.002019983350543452,
+        0.004161801854852043
+      ],
+      "method": "native",
+      "n": 2,
+      "p90": 0.027714561024084712,
+      "radius": 0.034991639035443806,
+      "rep_means_digest": "d7144b95c2a4a1dd7f93fb7c533da19cbd2b50f0730205acabf7356844796b09",
+      "rep_seeds_digest": "84c43e2577b3785ed458cadddb3e177241e3a840cc680cd911899ee235f09881",
+      "row_id": "hom_111|n2|corr07|native|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 37,
+      "exceed_wilson": [
+        0.002685632352621393,
+        0.005095538432809675
+      ],
+      "method": "shadow",
+      "n": 2,
+      "p90": 0.02754651800649139,
+      "radius": 0.034991639035443806,
+      "rep_means_digest": "792ea249705857b1eca78ca4bbece3cea65924b1e3304c33f36eff4cc574324d",
+      "rep_seeds_digest": "14ec753704c1796bcc7f9778efeb8110ee1c21cf1bd371969bd4afabd2b1d8f9",
+      "row_id": "hom_111|n2|corr07|shadow|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 652,
+      "exceed_wilson": [
+        0.06052620012552427,
+        0.0702077371251415
+      ],
+      "method": "lp_common",
+      "n": 4,
+      "p90": 0.044621086120605516,
+      "radius": 0.1037793241043798,
+      "rep_means_digest": "86f64d4eb91fe9a65547f871370eafa4ca4c1e1d64af6940df0a8e69a565a78a",
+      "rep_seeds_digest": "172d9e8171070744864146b807f3ef6db868d0da594618076a9b3ffb638de9c0",
+      "row_id": "hom_near|n4|corr07|lp_common|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 0,
+      "exceed_wilson": [
+        0.0,
+        0.00038401247776654115
+      ],
+      "method": "geometry",
+      "n": 4,
+      "p90": 0.011767578124999956,
+      "radius": 0.01678940233761078,
+      "rep_means_digest": "2b8767d6ba4bff4a8c1f89316a0d1e26b134dfa11d9592b79def132714ef43ac",
+      "rep_seeds_digest": "51f20e9e0547801aeb80978725dabc28412e92140f7ddaadcfb22acc3c0636fb",
+      "row_id": "hom_near|n4|corr07|geometry|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 0,
+      "exceed_wilson": [
+        0.0,
+        0.00038401247776654115
+      ],
+      "method": "native",
+      "n": 4,
+      "p90": 0.011713706609540598,
+      "radius": 0.014863219105918361,
+      "rep_means_digest": "9ed37bec51b1746009cbfdc5a60f6dd6412e83692a25d8a75de39986f7f52c45",
+      "rep_seeds_digest": "2d5479c55f11bc50e04d4683d08415075853140bff33db26097eb0cf72efaff8",
+      "row_id": "hom_near|n4|corr07|native|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 652,
+      "exceed_wilson": [
+        0.06052620012552427,
+        0.0702077371251415
+      ],
+      "method": "shadow",
+      "n": 4,
+      "p90": 0.045009973770632664,
+      "radius": 0.354938656089419,
+      "rep_means_digest": "949dfde69a27f676beb324b1273adc2f4d7e9891c46698752698da4c82e051a4",
+      "rep_seeds_digest": "9a4e111710fcb45dde12c2ddf38c2022695a6f38ebaa3a6489423ef02fdbb111",
+      "row_id": "hom_near|n4|corr07|shadow|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 651,
+      "exceed_wilson": [
+        0.06042968804509622,
+        0.07010432600806513
+      ],
+      "method": "lp_common",
+      "n": 4,
+      "p90": 0.04447679519653316,
+      "radius": 0.1037793241043798,
+      "rep_means_digest": "d070b469d3be0fbeaf34e2f6f01be5fed783b88bd74fb1437fee84643e4fb913",
+      "rep_seeds_digest": "85ddaedb8159b132db27292ad4731eebf4d15e4d23443774507817841b21e80c",
+      "row_id": "hom_111|n4|corr07|lp_common|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 654,
+      "exceed_wilson": [
+        0.06071923402581227,
+        0.07041454961986239
+      ],
+      "method": "geometry",
+      "n": 4,
+      "p90": 0.04449348449707036,
+      "radius": 0.1037793241043798,
+      "rep_means_digest": "632777627154f2a623a3c9fd10cf4b027ef24b81db668e931f4e801b901931a6",
+      "rep_seeds_digest": "8a21deab5fcd2f9db23a139d3e8d15e24b859541966802f16d1d0f5853628b8e",
+      "row_id": "hom_111|n4|corr07|geometry|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 680,
+      "exceed_wilson": [
+        0.0632298326727875,
+        0.07310195410800277
+      ],
+      "method": "native",
+      "n": 4,
+      "p90": 0.04485200195856296,
+      "radius": 0.06529528736019337,
+      "rep_means_digest": "b728dd3af37463efba6fdd3b2053faf2137b9bd1fd95b8bb5fec866b6349938d",
+      "rep_seeds_digest": "af77798ff63b76b269b68d87112071cdfdae1c149b8a000c22e617862516e5f2",
+      "row_id": "hom_111|n4|corr07|native|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 668,
+      "exceed_wilson": [
+        0.0620708305972485,
+        0.07186187781348839
+      ],
+      "method": "shadow",
+      "n": 4,
+      "p90": 0.04490985554913795,
+      "radius": 0.06529528736019337,
+      "rep_means_digest": "e0896f3c8e60cc309c36b9e069cf99676e43e848b9d5c74c19eb99fd1b5b0aa9",
+      "rep_seeds_digest": "f7a7f7975ea7928b086722f9a6b6eca02b78d53f8f7d78322b9ea6f2dc36b969",
+      "row_id": "hom_111|n4|corr07|shadow|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 2414,
+      "exceed_wilson": [
+        0.23311285548551194,
+        0.2498857557679889
+      ],
+      "method": "lp_common",
+      "n": 6,
+      "p90": 0.0707795143127441,
+      "radius": 0.1933526068126401,
+      "rep_means_digest": "3811ade14607cbeabc726e97d79474a54a33dc2f4cbf50f73704981b37945cb0",
+      "rep_seeds_digest": "2cf033d14c7f5499e7d8b91c432fe0f730e05c2097cea6923c07c93d59fcd134",
+      "row_id": "hom_near|n6|corr07|lp_common|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 0,
+      "exceed_wilson": [
+        0.0,
+        0.00038401247776654115
+      ],
+      "method": "geometry",
+      "n": 6,
+      "p90": 0.011767578124999956,
+      "radius": 0.017238934797106337,
+      "rep_means_digest": "16e1cead6de661963c44e3da10f8cf3b84272bcb99efa87cbf1fbd2dd699f76f",
+      "rep_seeds_digest": "aa16e08a5cd9b2c9645bb62cdb26480fe543741196c882da937829c1087c0f7d",
+      "row_id": "hom_near|n6|corr07|geometry|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 0,
+      "exceed_wilson": [
+        0.0,
+        0.00038401247776654115
+      ],
+      "method": "native",
+      "n": 6,
+      "p90": 0.01176750405932181,
+      "radius": 0.014892933561717978,
+      "rep_means_digest": "6f953cebc63009f3dd2dc3e6356569634070963fc1a85c1225fcce44071f0c52",
+      "rep_seeds_digest": "29e666b1f4200723f41afbab532d4e34eaa34c74145fc92a3df54b8d940f705b",
+      "row_id": "hom_near|n6|corr07|native|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 2399,
+      "exceed_wilson": [
+        0.23163125691981773,
+        0.2483685063711164
+      ],
+      "method": "shadow",
+      "n": 6,
+      "p90": 0.06921159708980683,
+      "radius": 1.4197503642578013,
+      "rep_means_digest": "159850ee16afc6a5d5e244aed94f022ffc82d9c00cfe2747c55ac5bf9692fd3e",
+      "rep_seeds_digest": "9f971a59d83e17c72394c460cf6d5ee82a3ee32160ea22fc4dfccdf72e0b7086",
+      "row_id": "hom_near|n6|corr07|shadow|N4096",
+      "target_id": "hom_near"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 2369,
+      "exceed_wilson": [
+        0.22866848513664956,
+        0.2453335822291512
+      ],
+      "method": "lp_common",
+      "n": 6,
+      "p90": 0.06940694808959957,
+      "radius": 0.1933526068126401,
+      "rep_means_digest": "a3f485767234fe279629c6419292eca9debfd5ddda2e6ffc5b5e7a7c24d40888",
+      "rep_seeds_digest": "1a8bc68ed3f6cf38481849be5015d64666528c3b952da8a222c8b0c62a055ca8",
+      "row_id": "hom_111|n6|corr07|lp_common|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 2365,
+      "exceed_wilson": [
+        0.22827349205154543,
+        0.24492888252423747
+      ],
+      "method": "geometry",
+      "n": 6,
+      "p90": 0.07007808685302731,
+      "radius": 0.1933526068126401,
+      "rep_means_digest": "1677a5843b00f36568b97f449cd2af08e90bb655d84c04f15f966243f61d91b9",
+      "rep_seeds_digest": "496817b4e2991b543c7e8233103d5a26f5ca915ddbfb9ebdaffd4ed2a9c34767",
+      "row_id": "hom_111|n6|corr07|geometry|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 2396,
+      "exceed_wilson": [
+        0.2313349541549322,
+        0.2480650395434886
+      ],
+      "method": "native",
+      "n": 6,
+      "p90": 0.07017254043339559,
+      "radius": 0.12184266496152582,
+      "rep_means_digest": "4e80f44211dff9d1fe7d4057af612ca88bfb6f9949dcb5966c6992494f58b98f",
+      "rep_seeds_digest": "077a153645fc6a58975abb40864d26225f5550a4d7184a13d7160d3717ca48dd",
+      "row_id": "hom_111|n6|corr07|native|N4096",
+      "target_id": "hom_111"
+    },
+    {
+      "N": 4096,
+      "exceed_count": 2358,
+      "exceed_wilson": [
+        0.22758227873028675,
+        0.24422063346296508
+      ],
+      "method": "shadow",
+      "n": 6,
+      "p90": 0.07020913879346338,
+      "radius": 0.12184266496152582,
+      "rep_means_digest": "af3eedb8d698027344a65aef5ca73470abf003375b09c88148da7b7cfc5c0bb1",
+      "rep_seeds_digest": "10eb77019bed1039f7b8312055ee6d85e0ff75896ce8657c2c112186ce20e048",
+      "row_id": "hom_111|n6|corr07|shadow|N4096",
+      "target_id": "hom_111"
+    }
+  ],
+  "selection": "N=4096 corr07 n=1,2,4,6 targets hom_near/hom_111 methods lp_common/geometry/native/shadow 10000 trials",
+  "source_design_sha256": "e8bf6043fee27fb52cda2e3bbc6f85bd1347859383025a7fce04092c1525d744",
+  "source_results_sha256": "6508c16547448fca780a348581802992e7d2b500876c43dd56862c7f25161013",
+  "state": "corr07"
+}

@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "row_id": "lambda_0.25|n6|corr07|lp_common|N4096",
+      "closed_form_mean": 0.6995166164621441,
+      "closed_form_second_moment": 7.975655732698837,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_0.25|n6|corr07|lp_half|N4096",
+      "closed_form_mean": 0.610888671875,
+      "closed_form_second_moment": 21.618064880371094,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_0.25|n6|corr07|inv_common|N4096",
+      "closed_form_mean": 0.6999999999999998,
+      "closed_form_second_moment": 7.978124999999999,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_0.25|n6|corr07|inv_half|N4096",
+      "closed_form_mean": 0.6999999999999998,
+      "closed_form_second_moment": 20.159423828124996,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_0.25|n6|corr07|native|N4096",
+      "closed_form_mean": 0.7,
+      "closed_form_second_moment": 1.239505694196154,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_0.25|n6|corr07|shadow|N4096",
+      "closed_form_mean": 0.7,
+      "closed_form_second_moment": 7.9781249999999995,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_0.25|n6|corr07|naive|N4096",
+      "closed_form_mean": 0.6569320113565158,
+      "closed_form_second_moment": 0.6569320113565158,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_0.25|n6|corr07|geometry|N4096",
+      "closed_form_mean": 0.6995166164621441,
+      "closed_form_second_moment": 7.975655732698837,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_1|n6|corr07|lp_common|N4096",
+      "closed_form_mean": 0.6995166164621441,
+      "closed_form_second_moment": 7.975655732698837,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_1|n6|corr07|lp_half|N4096",
+      "closed_form_mean": 0.610888671875,
+      "closed_form_second_moment": 21.618064880371094,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_1|n6|corr07|inv_common|N4096",
+      "closed_form_mean": 0.6999999999999998,
+      "closed_form_second_moment": 7.978124999999999,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_1|n6|corr07|inv_half|N4096",
+      "closed_form_mean": 0.6999999999999998,
+      "closed_form_second_moment": 20.159423828124996,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_1|n6|corr07|native|N4096",
+      "closed_form_mean": 0.7,
+      "closed_form_second_moment": 1.951433145493875,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_1|n6|corr07|shadow|N4096",
+      "closed_form_mean": 0.7,
+      "closed_form_second_moment": 7.9781249999999995,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_1|n6|corr07|naive|N4096",
+      "closed_form_mean": 0.5358362241174743,
+      "closed_form_second_moment": 0.5358362241174743,
+      "pass": true
+    },
+    {
+      "row_id": "lambda_1|n6|corr07|geometry|N4096",
+      "closed_form_mean": 0.6995166164621441,
+      "closed_form_second_moment": 7.975655732698837,
+      "pass": true
+    }
+  ],
+  "uniform_tau_minus_second_moment": 1.0032971685850818,
+  "biased_tau_minus_second_moment": 0.8996380697641804,
+  "interpretation": "Native unclipped sample-mean MSE is (q^n-1)/N on the target; not a lower bound on clipped/high-probability estimators."
+}
